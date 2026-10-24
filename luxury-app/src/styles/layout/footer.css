@@ -1,0 +1,6 @@
+.footer {
+  margin-top: 4rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--color-line);
+  color: var(--color-muted);
+}

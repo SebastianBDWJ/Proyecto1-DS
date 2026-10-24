@@ -1,0 +1,15 @@
+/* Identidad visual del proyecto.
+   TODO (feature/layout-diseno): definir paleta y tipografías propias. */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-primary: #1a1a1a;
+  --color-accent: #999999;
+  --color-muted: #6b6b6b;
+  --color-line: #e0e0e0;
+
+  --font-heading: Georgia, serif;
+  --font-body: "Segoe UI", sans-serif;
+
+  --container-width: 1200px;
+}
