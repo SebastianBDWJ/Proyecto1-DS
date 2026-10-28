@@ -1,10 +1,24 @@
-const Contact = () => {
+
+import ContactForm from "../components/ContactForm";
+import "../../../styles/contact/contact.css"; 
+
+
+function Contact() {
   return (
-    <section className="container">
-      <h1>Contacto</h1>
-      {/* TODO (feature/contacto-404): formulario controlado con validaciones */}
-    </section>
+    <main className="contact-page">
+      <section className="contact-header">
+        <h1>Contacto</h1>
+        <p>
+          ¿Tenés alguna consulta? Estamos aquí para ayudarte a encontrar
+          tu próximo apartamento.
+        </p>
+      </section>
+
+      <section className="contact-content">
+        <ContactForm />
+      </section>
+    </main>
   );
-};
+}
 
 export default Contact;
