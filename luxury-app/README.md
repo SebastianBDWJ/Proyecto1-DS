@@ -1,173 +1,129 @@
-# THE IVORY — Luxury Residences
+# Proyecto 1 - The Ivory (Residencias de Lujo)
 
-> Aplicación web y móvil para la promoción de apartamentos de lujo en Costa Rica.  
-> Proyecto #1 · IF0009 Desarrollo de Software VI · Segundo Semestre 2026
+**Curso:** IF0009 - Desarrollo de Software VI  
+**Universidad de Costa Rica**
 
 ---
 
 ## Descripción
 
-**The Ivory Luxury Residences** es una plataforma responsiva para explorar, filtrar y consultar propiedades de lujo en el Valle Central de Costa Rica. Construida con React 19, TypeScript, CSS propio y empaquetada para Android mediante Capacitor.
+Este proyecto consiste en una aplicación web y móvil para una inmobiliaria ficticia de residencias y apartamentos de lujo en Costa Rica llamada **The Ivory**. 
 
-La aplicación permite:
-- Explorar un catálogo de 20+ apartamentos con información detallada.
-- Filtrar propiedades por texto, ubicación, habitaciones y precio máximo.
-- Guardar propiedades como favoritas (persistentes con `localStorage`).
-- Consultar el detalle completo de cada residencia.
-- Enviar un formulario de solicitud de información o visita.
+La plataforma permite explorar un catálogo de apartamentos, consultar las amenidades y características de cada propiedad, filtrar por precio, ubicación y habitaciones, guardar apartamentos en favoritos y enviar un formulario de contacto para pedir información o coordinar una visita.
 
 ---
 
 ## Tecnologías
 
-| Tecnología       | Versión   | Uso                              |
-|------------------|-----------|----------------------------------|
-| React            | 19.x      | Interfaz de usuario              |
-| TypeScript       | 6.x       | Tipado estático                  |
-| React Router DOM | 7.x       | Navegación SPA                   |
-| Vite             | 8.x       | Bundler y servidor de desarrollo |
-| Capacitor        | —         | Empaquetado Android              |
-| CSS propio       | —         | Estilos sin frameworks externos  |
-
-> **No se utilizan:** Tailwind CSS, Bootstrap, ni plantillas visuales prediseñadas.
-
----
-
-## Estructura del proyecto
-
-```
-luxury-app/
-├── public/
-│   ├── data/
-│   │   └── apartments.json        # 20+ apartamentos (fuente de datos)
-│   └── images/
-│       ├── hero-bg.png            # Fotografía principal del hero
-│       └── apartments/            # Imágenes de propiedades
-├── src/
-│   ├── app/
-│   │   └── App.tsx                # Rutas principales
-│   ├── features/
-│   │   ├── home/                  # Página de inicio (Persona 4)
-│   │   ├── apartments/            # Catálogo y detalle (Personas 1 y 2)
-│   │   ├── favorites/             # Favoritos con Context API (Persona 2)
-│   │   ├── contact/               # Formulario de contacto (Persona 3)
-│   │   └── shared/                # Layout, Navbar, Footer, Logo, hooks
-│   └── styles/
-│       ├── variables.css          # Paleta de colores y tipografías
-│       ├── base.css               # Reset y estilos globales
-│       ├── home/                  # Estilos del home
-│       └── layout/                # Navbar, Footer, Logo
-└── android/                       # Proyecto Android generado por Capacitor
-```
+* **React 19** con **TypeScript**
+* **Vite** como empaquetador y servidor de desarrollo
+* **React Router DOM 7** para rutas y navegación SPA
+* **Capacitor** para el empaquetado móvil en Android
+* **CSS puro** (sin frameworks como Tailwind o Bootstrap, todo diseñado a mano con CSS nativo)
 
 ---
 
 ## Instalación y ejecución local
 
-### Requisitos previos
-- Node.js 18+
-- npm 9+
+Para correr la aplicación en la computadora:
 
-### Pasos
-
+1. Entrar a la carpeta del proyecto:
 ```bash
-# 1. Clonar el repositorio
-git clone <URL_DEL_REPOSITORIO>
 cd luxury-app
+```
 
-# 2. Instalar dependencias
+2. Instalar las dependencias:
+```bash
 npm install
+```
 
-# 3. Ejecutar en modo desarrollo
+3. Levantar el servidor local:
+```bash
 npm run dev
 ```
 
-La aplicación estará disponible en `http://localhost:5173`.
+La app estará disponible en `http://localhost:5173`.
 
 ---
 
-## Comandos disponibles
+## Ejecución en Android (Capacitor)
 
+Para probar la versión móvil en Android Studio:
+
+1. Compilar el proyecto web:
 ```bash
-npm run dev        # Servidor de desarrollo con HMR
-npm run build      # Compilar para producción (genera /dist)
-npm run preview    # Previsualizar la build de producción
-npm run lint       # Verificar el código con ESLint
+npm run build
 ```
 
----
-
-## Configuración de Capacitor (Android)
-
+2. Sincronizar con la plataforma Android:
 ```bash
-# Compilar la versión web primero
-npm run build
-
-# Sincronizar con Android
 npx cap sync android
+```
 
-# Abrir en Android Studio
+3. Abrir en Android Studio:
+```bash
 npx cap open android
 ```
 
-> Se requiere Android Studio con SDK configurado.  
-> El `appId` está configurado como `cr.theivory.app` y el `appName` como `The Ivory`.
-
 ---
 
-## Páginas de la aplicación
+## Estructura del proyecto
 
-| Ruta                  | Página              | Descripción                                      |
-|-----------------------|---------------------|--------------------------------------------------|
-| `/`                   | Inicio              | Hero, filosofía, propiedades destacadas, contacto |
-| `/apartamentos`       | Catálogo            | Lista con filtros y paginación (5 por página)    |
-| `/apartamentos/:id`   | Detalle             | Información completa de la propiedad             |
-| `/favoritos`          | Favoritos           | Propiedades guardadas (localStorage)             |
-| `/contacto`           | Contacto            | Formulario controlado con validaciones           |
-| `*`                   | No encontrada (404) | Página de error para rutas inválidas             |
+El código está organizado por módulos dentro de `src/features`:
 
----
-
-## Identidad visual
-
-- **Marca:** THE IVORY · Luxury Residences
-- **Paleta:** marfil `#f5f0e8`, beige `#e2d5c3`, arena `#c9b99a`, dorado apagado `#9e7840`, café oscuro `#1e1a15`
-- **Tipografía:** Cormorant Garamond (titulares serif) + Montserrat (cuerpo sans-serif)
-- **Estilo:** Lujo discreto, arquitectura editorial, Old Money
-
----
-
-## Publicación en Vercel
-
-🌐 **URL pública:** `https://luxury-app.vercel.app`
-
-Configuración SPA en `vercel.json`:
-```json
-{
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-}
+```text
+luxury-app/
+├── public/
+│   ├── data/
+│   │   └── apartments.json        # Base de datos local (20+ apartamentos)
+│   └── images/                    # Fotografías de propiedades y logo
+├── src/
+│   ├── app/
+│   │   └── App.tsx                # Configuración de rutas principales
+│   ├── features/
+│   │   ├── home/                  # Página de inicio
+│   │   ├── apartments/            # Catálogo y página de detalle
+│   │   ├── favorites/             # Sistema de favoritos (Context + localStorage)
+│   │   ├── contact/               # Formulario de contacto validado
+│   │   └── shared/                # Navbar, Footer, Logo y utilidades
+│   └── styles/                    # Hojas de estilo CSS por sección
+└── android/                       # Proyecto nativo generado por Capacitor
 ```
 
 ---
 
-## Equipo
+## Integrantes y distribución del trabajo
 
-| Persona | Responsabilidad                                   |
-|---------|---------------------------------------------------|
-| 1       | Catálogo, fetch, paginación, ApartmentCard        |
-| 2       | Detalle, favoritos, Context API, Capacitor/Android|
-| 3       | Filtros, formulario de contacto, NotFound         |
-| 4       | Identidad visual, Navbar, Footer, Home, README    |
+### Sebastián
+* **Catálogo de apartamentos:** `public/data/apartments.json` con más de 20 apartamentos y sus imágenes.
+* Hook de consumo de datos (`useApartments.ts` y `useFetch.ts`).
+* Tarjeta de apartamento y lista (`CardApartamento.tsx`, `CardAparList.tsx`).
+* Paginación (`Pagination.tsx` y hook `usePagination.ts` a 5 por página).
+* Componentes de estado (`Loader`, `ErrorMessage`, `EmptyState`).
+* Página de catálogo (`Apartments.tsx`) y publicación en Vercel.
+* **Parte asumida de Persona 2:** Página de detalle (`ApartmentDetail.tsx` y `apar-detail.css`), ruta dinámica `/apartamentos/:id` con `useParams`, visualización de amenidades y botón para solicitar visita.
+
+### Daniel
+* **Filtros y búsqueda:** Tipos y lógica de filtrado (`filterApartments.ts` para texto, ubicación, habitaciones y precio) y hook `useApartmentFilters.ts` con `useMemo`.
+* Barra de filtros (`ApartmentFilters.tsx`).
+* **Formulario de contacto:** Formulario controlado con `useState` (`ContactForm.tsx`), validaciones de correo y longitud (`validateContact.ts`), soporte de propiedad prellenada y confirmación de envío simulado.
+* Diseño de la página 404 (`NotFound.tsx`).
+* **Parte asumida de Persona 2:** Módulo completo de favoritos (`features/favorites/`): interfaz `FavoritesContextType`, `FavoritesContext.tsx` con Provider y persistencia en `localStorage`, hook `useFavorites.ts`, botón `FavoriteButton.tsx` y página `Favorites.tsx`.
+
+### Santi
+* **Identidad y estilos globales:** Definición de marca, componente `Logo.tsx`, paleta de colores y variables en `variables.css` y `base.css`.
+* **Navegación:** `Navbar.tsx` con menú hamburguesa responsivo, estado activo y cierre al navegar.
+* Pie de página (`Footer.tsx`).
+* **Página de inicio (Home):** Componentes de `Hero`, `About`, `Featured` (residencias destacadas), `Experience` (pilares en números romanos), `Location` y `ContactBand`.
+* Revisión responsiva en computadoras, tabletas y celulares.
+* Documentación completa del proyecto (`README.md`).
+* **Parte asumida de Persona 2:** Configuración y empaquetado móvil con **Capacitor**: instalación de dependencias, configuración de `appId` (`cr.theivory.app`) y `appName`, sincronización con Android (`npx cap sync android`) y pruebas en emulador.
 
 ---
 
-## Notas académicas
+## Notas del proyecto
 
-- El formulario de contacto **simula el envío** (no hay backend). Se indica claramente al usuario.
-- Los datos de apartamentos son estáticos en `public/data/apartments.json`.
-- Los favoritos se conservan en `localStorage` mediante Context API.
-- La publicación en Google Play **no** es requisito del proyecto.
+* Los datos de las residencias se cargan desde el archivo estático `public/data/apartments.json`.
+* El formulario de contacto valida todos los datos en el cliente y muestra una confirmación de envío en pantalla (simulado, no requiere backend).
+* Los favoritos se conservan en el navegador mediante `localStorage` a través de Context API.
 
----
-
-*© 2026 The Ivory Luxury Residences. Proyecto académico — UCR Sede de Occidente.*

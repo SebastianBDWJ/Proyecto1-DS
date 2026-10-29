@@ -1,25 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Logo from "../../shared/components/Logo";
 import "../../../styles/layout/navbar.css";
 
 const links = [
-  { to: "/",             label: "Inicio"       },
+  { to: "/", label: "Inicio" },
   { to: "/apartamentos", label: "Apartamentos" },
-  { to: "/favoritos",    label: "Favoritos"    },
-  { to: "/contacto",     label: "Contacto"     },
+  { to: "/favoritos", label: "Favoritos" },
+  { to: "/contacto", label: "Contacto" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const [prevPath, setPrevPath] = useState(pathname);
 
-  useEffect(() => { setOpen(false); }, [pathname]);
+  if (prevPath !== pathname) {
+    setPrevPath(pathname);
+    setOpen(false);
+  }
 
   return (
     <header className="nav">
       <div className="wrap nav__row">
-        <NavLink to="/" aria-label="The Ivory">
+        <NavLink to="/" aria-label="The Ivory" onClick={() => setOpen(false)}>
           <Logo />
         </NavLink>
 
