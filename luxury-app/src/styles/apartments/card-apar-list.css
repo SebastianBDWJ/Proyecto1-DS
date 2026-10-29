@@ -1,0 +1,20 @@
+/* Cuadrícula de tarjetas en teléfono: una sola columna */
+.apar-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Tableta (desde 640px): dos columnas */
+@media (min-width: 640px) {
+  .apar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Computadora (desde 1024px): tres columnas */
+@media (min-width: 1024px) {
+  .apar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
