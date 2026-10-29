@@ -1,4 +1,3 @@
-
 import type {
   ContactFormData,
   ContactFormErrors,
@@ -19,6 +18,12 @@ export function validateContact(
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())
   ) {
     errors.email = "Ingrese un correo electrónico válido";
+  }
+
+  if (data.phone && data.phone.trim() !== "") {
+    if (!/^[0-9+\s-]{8,}$/.test(data.phone.trim())) {
+      errors.phone = "Ingrese un número de teléfono válido";
+    }
   }
 
   if (data.message.trim().length < 10) {
