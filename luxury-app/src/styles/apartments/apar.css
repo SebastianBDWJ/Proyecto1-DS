@@ -135,4 +135,53 @@
     font-size: 0.7rem;
   }
 }
+
+.apartment-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid var(--color-line);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filter-group label {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+
+.apartment-filters button {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-bg);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .apartment-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .apartment-filters {
+    grid-template-columns: 1fr;
+  }
 }

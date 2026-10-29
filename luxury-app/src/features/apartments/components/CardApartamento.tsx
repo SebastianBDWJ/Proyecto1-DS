@@ -2,6 +2,8 @@ import "../../../styles/apartments/card-apar.css";
 import { Link } from "react-router-dom";
 import type { Apartment } from "../types/Apartment";
 import { formatPrice } from "../../shared/precios/formatPrice";
+import FavoriteButton from "../../favorites/components/FavoriteButton";
+    
 
 interface CardApartamentoProps {
     apartment: Apartment;
@@ -19,7 +21,7 @@ const CardApartamento = ({ apartment }: CardApartamentoProps) => {
                     alt={`Fotografía de ${name}`}
                     loading="lazy"
                 />
-                {/* TODO (compañero 2): aquí va el <FavoriteButton /> */}
+                {<FavoriteButton apartmentId={id} />}
             </div>
 
             <div className="apar-card__body">
