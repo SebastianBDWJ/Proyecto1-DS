@@ -1,16 +1,28 @@
 import "../../../styles/apartments/apar.css";
-import { useState } from "react";
+import { useState, } from "react";
 import { useApartments } from "../hooks/useApartments";
 import CardAparList from "../components/CardAparList";
 import Pagination from "../../shared/components/Pagination";
+import ApartmentFilters from "../components/ApartmentFilters";
+import { useApartmentFilters } from "../hooks/useApartmentFilters";
+import { filterApartments } from "../utils/filterApartments";
 
 const APARTMENTS_PER_PAGE = 5;
 
 const Apartments = () => {
   const { apartments, isLoading, error } = useApartments();
+
+  const {
+    filters,
+    updateFilters,
+    clearFilters,
+  } = useApartmentFilters();
+
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Cambia de página y sube la pantalla para ver las nuevas tarjetas
+  const filteredApartments = filterApartments(apartments, filters);
+
+  // Cambia de página y sube la pantalla para ver las nuevas tarjetas.
   const goToPage = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -26,16 +38,26 @@ const Apartments = () => {
 
   if (error) {
     return (
-      <p role="alert" className="status-message status-message--error container">
+      <p
+        role="alert"
+        className="status-message status-message--error container"
+      >
         {error}
       </p>
     );
   }
 
-  const indexOfLastApartment = currentPage * APARTMENTS_PER_PAGE;
-  const indexOfFirstApartment = indexOfLastApartment - APARTMENTS_PER_PAGE;
-  const totalPages = Math.ceil(apartments.length / APARTMENTS_PER_PAGE);
-  const currentApartments = apartments.slice(indexOfFirstApartment, indexOfLastApartment);
+  const totalPages = Math.ceil(
+    filteredApartments.length / APARTMENTS_PER_PAGE
+  );
+
+  const indexOfFirstApartment = (currentPage - 1) * APARTMENTS_PER_PAGE;
+  const indexOfLastApartment = indexOfFirstApartment + APARTMENTS_PER_PAGE;
+
+  const currentApartments = filteredApartments.slice(
+    indexOfFirstApartment,
+    indexOfLastApartment
+  );
 
   return (
     <section className="container apar-page">
@@ -47,13 +69,24 @@ const Apartments = () => {
         </p>
       </header>
 
-      {/* TODO (compañero 3): aquí va la barra de búsqueda y filtros */}
+      <ApartmentFilters
+  filters={filters}
+  onFilterChange={(newFilters) => {
+    updateFilters(newFilters);
+    setCurrentPage(1);
+  }}
+  onClear={() => {
+    clearFilters();
+    setCurrentPage(1);
+  }}
+/>
 
-      {currentApartments.length > 0 ? (
+      {filteredApartments.length > 0 ? (
         <>
           <p className="apar-page__results" aria-live="polite">
             Mostrando {indexOfFirstApartment + 1}–
-            {Math.min(indexOfLastApartment, apartments.length)} de {apartments.length} apartamentos
+            {Math.min(indexOfLastApartment, filteredApartments.length)} de{" "}
+            {filteredApartments.length} apartamentos
           </p>
 
           <CardAparList apartments={currentApartments} />
@@ -62,8 +95,12 @@ const Apartments = () => {
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
-              onPrevious={() => goToPage(Math.max(1, currentPage - 1))}
-              onNext={() => goToPage(Math.min(totalPages, currentPage + 1))}
+              onPrevious={() =>
+                goToPage(Math.max(1, currentPage - 1))
+              }
+              onNext={() =>
+                goToPage(Math.min(totalPages, currentPage + 1))
+              }
             />
           )}
         </>
