@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import type {
   ContactFormData,
@@ -9,6 +8,7 @@ import { validateContact } from "../utils/validateContact";
 const initialForm: ContactFormData = {
   name: "",
   email: "",
+  phone: "",
   message: "",
   property: new URLSearchParams(window.location.search).get("propiedad") ?? "",
 };
@@ -43,6 +43,7 @@ function ContactForm() {
         ...previousData,
         name: "",
         email: "",
+        phone: "",
         message: "",
       }));
     } else {
@@ -80,6 +81,20 @@ function ContactForm() {
             aria-invalid={Boolean(errors.email)}
           />
           {errors.email && <p className="form-error">{errors.email}</p>}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="phone">Teléfono (opcional)</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            value={formData.phone ?? ""}
+            onChange={handleChange}
+            placeholder="+506 0000-0000"
+            aria-invalid={Boolean(errors.phone)}
+          />
+          {errors.phone && <p className="form-error">{errors.phone}</p>}
         </div>
 
         <div className="form-group">
