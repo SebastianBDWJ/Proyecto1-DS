@@ -1,0 +1,161 @@
+/* Contenedor de la tarjeta, cubic-bezier hace que el movimiento arranque rápido y frene suave */
+.apar-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Caja de la foto: todas miden igual (4:3) y recorta la foto cuando hace zoom */
+.apar-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+/* La foto llena su caja sin deformarse */
+.apar-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Zona de texto */
+.apar-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.5rem;
+  padding: 1.25rem;
+}
+
+/* Ubicación del texto pequeño, gris y en mayúsculas */
+.apar-card__location {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Nombre del apartamento */
+.apar-card__name {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+/* Línea decorativa bajo el nombre */
+.apar-card__name::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-top: 0.5rem;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+/* Listas de características y amenidades en una fila, sin viñetas */
+.apar-card__specs,
+.apar-card__amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+/* Pone un "·" entre cada característica: 3 hab. · 2 baños · 180 m² */
+.apar-card__specs li + li::before {
+  content: "· ";
+  color: var(--color-muted);
+}
+
+/* Cada amenidad se muestra como una etiqueta ovalada */
+.apar-card__amenities li {
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+/* Pie de la tarjeta: precio a la izquierda y enlace a la derecha */
+.apar-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-line);
+}
+
+/* Precio en negrita */
+.apar-card__price {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Texto "/ mes" más pequeño y gris junto al precio */
+.apar-card__price span {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+/* Enlace "Ver detalle" sin subrayado */
+.apar-card__link {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Flecha del enlace: inline-block para poder moverla con transform */
+.apar-card__arrow {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Subraya el enlace al llegar con el teclado (accesibilidad) */
+.apar-card__link:focus-visible {
+  text-decoration: underline;
+}
+
+/* Animaciones al pasar el mouse.
+   Solo en dispositivos con mouse: en el teléfono no existe el "pasar por encima" */
+@media (hover: hover) {
+  /* La tarjeta sube un poco con una sombra amplia y difusa */
+  .apar-card:hover,
+  .apar-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -12px rgb(0 0 0 / 0.18);
+  }
+
+  /* Zoom lento de la foto */
+  .apar-card:hover .apar-card__image,
+  .apar-card:focus-within .apar-card__image {
+    transform: scale(1.06);
+  }
+
+  /* La línea bajo el nombre se dibuja de izquierda a derecha */
+  .apar-card:hover .apar-card__name::after,
+  .apar-card:focus-within .apar-card__name::after {
+    transform: scaleX(1);
+  }
+
+  /* La flecha avanza hacia la derecha */
+  .apar-card:hover .apar-card__arrow,
+  .apar-card:focus-within .apar-card__arrow {
+    transform: translateX(8px);
+  }
+}
