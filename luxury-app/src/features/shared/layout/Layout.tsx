@@ -7,7 +7,7 @@ const Layout = () => {
     <>
       <Navbar />
       <main>
-        <Outlet /> {/* Aquí se renderiza la página de la ruta actual */}
+        <Outlet />
       </main>
       <Footer />
     </>

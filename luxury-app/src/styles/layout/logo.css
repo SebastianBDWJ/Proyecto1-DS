@@ -1,0 +1,43 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+}
+
+.logo__img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.logo__name {
+  font-family: var(--font-head);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--dark);
+}
+
+.logo__sub {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.logo--light .logo__name {
+  color: var(--ivory);
+}
+
+.logo--light .logo__sub {
+  color: var(--sand);
+}
