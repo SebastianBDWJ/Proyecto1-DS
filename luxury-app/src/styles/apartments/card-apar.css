@@ -158,9 +158,8 @@
   .apar-card:focus-within .apar-card__arrow {
     transform: translateX(8px);
   }
+}
 
-
-  
 .apar-card__media {
   position: relative;
 }
@@ -192,6 +191,4 @@
 
 .favorite-button:hover {
   transform: scale(1.08);
-}
-
 }

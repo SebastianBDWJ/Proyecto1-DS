@@ -1,5 +1,6 @@
 import Hero from "../components/Hero";
 import About from "../components/About";
+import Featured from "../components/Featured";
 import Experience from "../components/Experience";
 import Location from "../components/Location";
 import ContactBand from "../components/ContactBand";
@@ -10,6 +11,7 @@ const Home = () => {
     <>
       <Hero />
       <About />
+      <Featured />
       <Experience />
       <Location />
       <ContactBand />
@@ -18,3 +20,4 @@ const Home = () => {
 };
 
 export default Home;
+

@@ -10,7 +10,7 @@ const Hero = () => {
           Un lugar único<br /><em>Una vida diferente</em>
         </h1>
         <p className="hero__sub">
-          Apartamentos de lujo en las mejores zonas de la ciudad y las costas más exclusivas de Costa Rica Los seleccionamos nosotros para que solo tengas que elegir
+          Apartamentos de lujo en las mejores zonas de la ciudad y las costas más exclusivas de Costa Rica. Los seleccionamos nosotros para que solo tengas que elegir
         </p>
         <Link to="/apartamentos" className="btn-primary">Ver propiedades</Link>
       </div>
