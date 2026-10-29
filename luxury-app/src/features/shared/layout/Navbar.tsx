@@ -1,32 +1,47 @@
+import { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import Logo from "../../shared/components/Logo";
 import "../../../styles/layout/navbar.css";
-import { NavLink } from "react-router-dom";
 
 const links = [
-  { to: "/", label: "Inicio" },
+  { to: "/",             label: "Inicio"       },
   { to: "/apartamentos", label: "Apartamentos" },
-  { to: "/favoritos", label: "Favoritos" },
-  { to: "/contacto", label: "Contacto" },
+  { to: "/favoritos",    label: "Favoritos"    },
+  { to: "/contacto",     label: "Contacto"     },
 ];
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => { setOpen(false); }, [pathname]);
+
   return (
-    <header className="navbar">
-      <div className="container navbar__inner">
-        {/* TODO (feature/layout-diseno): Logo y nombre de la marca */}
-        <NavLink to="/" className="navbar__brand">
-          Marca
+    <header className="nav">
+      <div className="wrap nav__row">
+        <NavLink to="/" aria-label="The Ivory">
+          <Logo />
         </NavLink>
 
-        {/* TODO (feature/layout-diseno): botón de menú móvil abrir/cerrar */}
-        <nav className="navbar__links" aria-label="Navegación principal">
-          {links.map((link) => (
+        <button
+          className={`nav__burger${open ? " nav__burger--open" : ""}`}
+          onClick={() => setOpen(v => !v)}
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+        >
+          <span /><span /><span />
+        </button>
+
+        <nav className={`nav__links${open ? " nav__links--open" : ""}`} aria-label="Menú principal">
+          {links.map(l => (
             <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === "/"}
-              className={({ isActive }) => (isActive ? "active" : "")}
+              key={l.to}
+              to={l.to}
+              end={l.to === "/"}
+              className={({ isActive }) => "nav__a" + (isActive ? " nav__a--active" : "")}
+              onClick={() => setOpen(false)}
             >
-              {link.label}
+              {l.label}
             </NavLink>
           ))}
         </nav>
