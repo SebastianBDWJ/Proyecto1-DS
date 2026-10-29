@@ -1,5 +1,6 @@
 
 import ContactForm from "../components/ContactForm";
+import ContactInfo from "../components/ContactInfo";
 import "../../../styles/contact/contact.css"; 
 
 
@@ -16,6 +17,7 @@ function Contact() {
 
       <section className="contact-content">
         <ContactForm />
+        <ContactInfo/>
       </section>
     </main>
   );
