@@ -1,11 +1,9 @@
 const Favorites = () => {
   return (
     <section className="container">
-      <h1>Mis favoritos</h1>
-      <p>Próximamente disponible.</p>
+      <h1>Favoritos</h1>
     </section>
   );
 };
 
 export default Favorites;
-
